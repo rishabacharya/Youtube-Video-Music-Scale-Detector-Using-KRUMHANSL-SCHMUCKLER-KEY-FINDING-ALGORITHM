@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Scale Finder</title>
+    <script type="text/javascript" src="main.js"></script>
+    <script src="jquery-3.6.0.min.js"></script>
+    <script src="popup.js"></script>
+    <link rel="stylesheet" href="style.css">
+    
+</head>
+<body>
+    <b>Select particular time duration to find scale</b>
+    <br>
+    <div class="a">
+        <div>
+        <form id="x">
+        <label>Starting time:</label><br>
+        <input type="number" id="hour" placeholder="h">
+        <input type="number" id="min" placeholder="m">
+        <input type="number" id="sec" placeholder="s">
+        </form>
+        </div>
+        &nbsp; &nbsp;&nbsp; &nbsp;
+        
+        <div>
+        <form id="y">
+        <label>Ending time: </label><br>
+        <input type="number" id="hour2" placeholder="H">
+        <input type="number" id="min2" placeholder="M">
+        
+        <input type="number" id="sec2" placeholder="S">
+        </form>
+        </div>
+    </div>
+    <button type="submit" id="find">Find <span id="info">Find scale from given time duration</span></button>
+    <button type="submit" id="autofind">Auto Find <span id="info2">Find scale by taking initial 1 min time duration</span></button>
+    <p>Time duration(hh:mm:ss): <b id="starting">
+        <span id="h1">00</span>
+        :
+        <span id="m1">00</span>
+        :<span id="s1">00</span>
+        </b> to 
+        <b id="final">
+            <span id="h2">00</span>
+            :
+            <span id="m2">00</span>
+            :<span id="s2">00</span></b>
+    </p>
+    <em>(Select duration not more than 1 min for faster operation)</em><br>
+    <b>Scale: <em id="scale">-</em></b>
+
+</body>
+</html>
+
+
+
+
