@@ -1,0 +1,141 @@
+body {
+    width: 280px;
+    /* height: 1000px; */
+    background-color: rgb(244, 232, 255);
+    
+}
+.a {
+    display: flex;
+    
+}
+
+h2 {
+  background-color: rgb(172, 0, 0);
+  padding:5px;
+  color:rgb(255, 255, 255);
+  text-align: center;
+  
+
+  /* animation: shine 10s ease-in-out infinite; */
+}
+/* @keyframes shine {
+  0%,
+  100% {
+    text-shadow: 0 0 30px red;
+  }
+  25% {
+    text-shadow: 0 0 30px orange;
+  }  50% {
+    text-shadow: 0 0 30px forestgreen;
+  }  75% {
+    text-shadow: 0 0 30px pink;
+  }  100% {
+    text-shadow: 0 0 30px cyan;
+  }
+} */
+#hour,#min,#sec, #hour2,#min2, #sec2 {
+    width:30px;
+    
+}
+em {
+    font-size: 12px;
+}
+#p{
+  margin: 0%;
+  color:blue
+}
+
+/* information for find button */
+#find {
+    position: relative;
+    display: inline-block;
+    /* border-bottom: 1px dotted black; */
+  }
+  
+  #find #info {
+    visibility: hidden;
+    width: 120px;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+    position: absolute;
+    z-index: 1;
+    top: -5px;
+    left: 110%;
+  }
+  
+  #find #info::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    right: 100%;
+    margin-top: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: transparent black transparent transparent;
+  }
+  #find:hover #info {
+    visibility: visible;
+  }
+
+  /* information for autofind button  */
+
+  #autofind {
+    position: relative;
+    display: inline-block;
+    /* border-bottom: 1px dotted black; */
+  }
+  #autofind:active,#find:active {
+    background-color: red;
+    
+  }
+  #autofind #info2 {
+    visibility: hidden;
+    width: 120px;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+    position: absolute;
+    z-index: 1;
+    top: -5px;
+    left: 110%;
+  }
+  
+  #autofind #info2::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    right: 100%;
+    margin-top: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: transparent black transparent transparent;
+  }
+  #autofind:hover #info2 {
+    visibility: visible;
+  }
+  
+  i {
+    font-family: "Times New Roman", Times, serif;
+    color:rgb(212, 0, 0)
+  }
+  #scale {
+    color:rgb(7, 0, 112)
+    
+  }
+  #find{
+    background-color: rgb(198, 191, 255);
+    margin-top: 4px;
+  
+  }
+  #autofind{
+    background-color: rgb(183, 255, 183);
+  }
+
+
+
+

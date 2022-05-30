@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>YouTube Song Scale Finder</title>
+    <script type="text/javascript" src="main.js"></script>
+    <script src="jquery-3.6.0.min.js"></script>
+    <script src="popup.js"></script>
+    <link rel="stylesheet" href="style.css">
+    
+</head>
+<body>
+    <h2>YouTube Song Scale Finder</h2>
+
+
+    <b>Select particular time duration to find scale</b>
+    <p id="p">(or click <em>"Auto Find"</em> button)</p><br>
+    <div class="a">
+        <div>
+        <form id="x">
+        <label>Starting time:</label><br>
+        <input type="number" min="0" id="hour" placeholder="h">
+        <input type="number" min="0" id="min" placeholder="m">
+        <input type="number" min="0" id="sec" placeholder="s">
+        </form>
+        </div>
+        &nbsp; &nbsp;&nbsp; &nbsp;
+        
+        <div>
+        <form id="y">
+        <label>Ending time: </label><br>
+        <input type="number" id="hour2" placeholder="H">
+        <input type="number" id="min2" placeholder="M">
+        
+        <input type="number" id="sec2" placeholder="S">
+        </form>
+        </div>
+    </div>
+    <button type="submit" id="find"><b>Find</b><span id="info">Finds scale from given time duration</span></button>
+    <button type="submit" id="autofind"><b>Auto Find</b><span id="info2">Finds scale by taking small(&#8826;30sec) time duration</span></button>
+    <p>Time duration(hh:mm:ss): <b id="starting">
+        <span id="h1">00</span>:<span id="m1">00</span>:<span id="s1">00</span>
+        </b> to 
+        <b id="final">
+            <span id="h2">00</span>:<span id="m2">00</span>:<span id="s2">00</span></b>
+    </p>
+    <em>(Select duration not more than 1 min for faster operation<i>[Standard time: 30sec]</i>)</em><br><br>
+    <b>Scale: <em id="scale">-</em></b>
+
+</body>
+</html>
+
+
+
+

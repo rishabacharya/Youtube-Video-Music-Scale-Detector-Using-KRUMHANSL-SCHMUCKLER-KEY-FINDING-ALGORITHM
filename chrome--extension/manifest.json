@@ -1,0 +1,28 @@
+{
+    "manifest_version": 2,
+    "name": "YouTube Song Scale Finder",
+    "description": "Finds scale of YouTube song",
+    "author": "Youbraj Kafle",
+    "version": "1.0",
+    
+    "icons": {
+        "16": "img/icon_16.png",
+        "48": "img/icon_48.png",
+        "128": "img/icon_128.png"
+    },
+    "browser_action": {
+        "default_icon": {
+            "19": "img/icon_16.png",
+            "38": "img/icon_48.png"
+        },
+        "default_popup": "popup.html"
+    },
+
+    "permissions": [
+        "tabs",
+
+        "<all_urls>",
+        "webRequest",
+        "webRequestBlocking"
+    ]
+}
