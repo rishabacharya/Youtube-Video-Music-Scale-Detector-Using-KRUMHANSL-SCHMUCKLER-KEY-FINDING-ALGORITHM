@@ -78,11 +78,27 @@ class Tonal_Fragment(object):
       
 def main(audio):
     # this audio takes a long time to load because it has a very high sampling rate; be patient.
-    audio_path = audio
+    import soundfile
+    try:
+        audio_path = soundfile.SoundFile(librosa.ex(audio))
+    except Exception as e:
+        print(e)
     # the load function generates a tuple consisting of an audio object y and its sampling rate sr
+    from datetime import datetime
+
+    now = datetime.now()
+    current_time = now.strftime("%H:%M:%S")
+    print("Current Time =", current_time)
+
     y, sr = librosa.load(audio_path)
+
+    from datetime import datetime
+    now = datetime.now()
+    current_time = now.strftime("%H:%M:%S")
+    print("Current Time =", current_time)
     # this function filters out the harmonic part of the sound file from the percussive part, allowing for
     # more accurate harmonic analysis
+
     y_harmonic, y_percussive = librosa.effects.hpss(y)
     # this block instantiates the Tonal_Fragment class with the first 22 seconds of the above harmonic part of une barque.
     # the three methods called will print the determined key of the song, the correlation coefficients for all keys,

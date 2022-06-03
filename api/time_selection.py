@@ -241,6 +241,7 @@ def findt(url,starting_time,ending_time):
     
     try:
         video_length=video_duration(url)
+
         # vl_st=time_diff_value(starting_time, video_length)
         # s_v=time_diff(video_length,starting_time)
         v_s=time_diff(starting_time,video_length)
@@ -248,9 +249,9 @@ def findt(url,starting_time,ending_time):
         # s_e=time_diff(ending_time,starting_time)
         e_s=time_diff(starting_time,ending_time)
         v_e=time_diff(ending_time,video_length)
-        et_st=time_diff_value(starting_time,ending_time)
+        #et_st=time_diff_value(starting_time,ending_time)
         if ((v_s and v_e) and e_s):
-            to=et_st
+            to=ending_time
             return (to)
         else:
             to=""
@@ -263,22 +264,29 @@ def findt(url,starting_time,ending_time):
 
 def autofindt(url):
     t1="0:00:30"
-    t2="0:01:15"
-    t3="0:02:15"
+    #t2="0:01:15"
+    #t3="0:02:15"
     v=video_duration(url)
     s1="0:00:00"
-    s2="0:00:45"
-    t1_v=time_diff(v,t1)
-    v_t3=time_diff(t3,v)
+    #s2="0:00:45"
+    t1_v=time_diff(t1,v)
     if t1_v:
         autofindt.s=s1
-        autofindt.to=v
-    if v_t3:
-        autofindt.s=s2
         autofindt.to=t1
     else:
         autofindt.s=s1
-        autofindt.to=t1
+        autofindt.to=v
+    #t1_v=time_diff(v,t1)
+    #v_t3=time_diff(t3,v)
+    #if t1_v:
+        #autofindt.s=s1
+        #autofindt.to=v
+    #if v_t3:
+        #autofindt.s=s2
+        #autofindt.to=t1
+    #else:
+        #autofindt.s=s1
+        #autofindt.to=t1
 
 def link_validity(url):
     c="https://www.youtube.com/watch?v="
