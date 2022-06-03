@@ -78,11 +78,7 @@ class Tonal_Fragment(object):
       
 def main(audio):
     # this audio takes a long time to load because it has a very high sampling rate; be patient.
-    import soundfile
-    try:
-        audio_path = soundfile.SoundFile(librosa.ex(audio))
-    except Exception as e:
-        print(e)
+    audio_path=audio
     # the load function generates a tuple consisting of an audio object y and its sampling rate sr
     from datetime import datetime
 
