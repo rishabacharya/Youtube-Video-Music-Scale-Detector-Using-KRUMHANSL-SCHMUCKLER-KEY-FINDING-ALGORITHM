@@ -6,6 +6,7 @@ import datetime
 
 def audio_download(url):
     print("downloading audio......")
+    print("hy")
     import subprocess
     cmd='youtube-dl -g "{}"'.format(url)
     subprocess = subprocess.Popen(cmd, shell=True, stdout=subprocess.PIPE)
@@ -52,7 +53,7 @@ def audio_download(url):
     cmd2='ffmpeg -ss {} -i "{}" -map a -to {} -c:a mp3 sample.mp3'.format(starting_time,l,time_diff)
     # cmd2='ffmpeg -ss 00:03:00 -i "{}" -map a -t 00:00:10 -c:a mp3 gog-vs-triv.mp3'.format(l)
     # os.system(cmd2)
-    subprocess= subprocess.Popen(cmd2, shell=True, stdout=subprocess.PIPE)
+    subprocess= subprocess.Popen(cmd2, shell=False, stdout=subprocess.PIPE)
     subprocess_return = subprocess.stdout.read()
     # normalstring 
     normal2 = subprocess_return.decode('utf-8')
@@ -74,7 +75,7 @@ def file_conversion():
     import subprocess
     wav_file="./sample.wav"
     cmd3="audio-to-midi {} -b 120 -t 30".format(wav_file)
-    subprocess= subprocess.Popen(cmd3, shell=True, stdout=subprocess.PIPE)
+    subprocess= subprocess.Popen(cmd3, shell=False, stdout=subprocess.PIPE)
     subprocess_return = subprocess.stdout.read()
     print("file converted")
     print("finding scale....")
@@ -117,31 +118,38 @@ def check_files():
         os.remove("sample.wav.mid")
     print("checking files done.")
 
-
-
-
-
-def main_func(url):
-    # url="https://www.youtube.com/watch?v=uiqrngFTX5k"
+def main_process(url,flag):
     try:
         check_files()
+        import timeit
+
+        start = timeit.default_timer()
         audio_download(url)
+        print("Vayo")
+        # All the program statements
+        stop = timeit.default_timer()
+        execution_time = stop - start
+
+        print("Program Executed in "+str(execution_time)) # It returns time in seconds
         file_conversion()
         scale_finder()
         transfer_data(url)
         check_files()
     except Exception as e:
         # print(e)
-        print("error occured and Retrying..")
-        try:
-            check_files()
-            audio_download(url)
-            file_conversion()
-            scale_finder()
-            transfer_data(url)
-            check_files()
+        if(flag==True):
+            print("error occured and Retrying..")
+            flag=False
+            main_process(url,flag)
 
-        except Exception as e:
-            # print(e)
+        else:
             print("second time error")
             trasnfer_data_error()
+
+def main_func(url):
+    # url="https://www.youtube.com/watch?v=uiqrngFTX5k"
+    print("main function")
+    flag=True
+    main-process(url,flag)
+
+    

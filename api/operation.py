@@ -10,55 +10,17 @@ from .time_selection import *
 def audio_download(url,starting_time,time_diff):
     print("downloading audio......")
     import subprocess
-    cmd='youtube-dl -g "{}"'.format(url)
+    #cmd='youtube-dl -x --audio-format mp3 -g "{}"'.format(url)
+    #cmd='youtube-dl -g "{}"'.format(url)
+    cmd='yt-dlp --external-downloader ffmpeg --external-downloader-args "-ss {} -to {}" -x --audio-format mp3 -o "sample.mp3" "{}"'.format(starting_time,time_diff,url)
+    #cmd=' youtube-dl --external-downloader ffmpeg --external-downloader-args "-ss {} -to {} -c:a mp3 sample.mp3".format(starting_time,time_diff) "{}"'.format
+    #'ffmpeg -ss {} -i "{}" -map a -to {} -c:a mp3 sample.mp3'.format(starting_time,l,time_diff)
+    print(cmd)
     subprocess = subprocess.Popen(cmd, shell=True, stdout=subprocess.PIPE)
     subprocess_return = subprocess.stdout.read()
     # normalstring 
     normal = subprocess_return.decode('utf-8')
-    # print(normal)
-    #get video url
-    s=normal
-    start = s.find("") + len("")
-    end = s.find("\n")
-    substring = s[start:end]
-    # print("video url:")
-    # print(substring)
-    #joining new line with video url
-    substring=substring+"\n"
-    #get audio url
-    start = s.find(substring) + len(substring)
-    end = s.find("\n")+ len(s)
-    substring = s[start:end]
-    substring=substring[:-1]   #removing new line from end of the link
-    # print("\nAudio url:----")
-    # print("x"+substring+"x")
-    #starting time
-    # h1=0
-    # m1=0
-    # s1=51
-    # #ending time
-    # h2=0
-    # m2=1
-    # s2=10
-    # #finding time difference(time2-time1)
-    # t1 = datetime.time(h1,m1,s1)
-    # t2 = datetime.time(h2,m2,s2)
-    # date = datetime.date(5, 5, 5)
-    # datetime1 = datetime.datetime.combine(date, t1)
-    # datetime2 = datetime.datetime.combine(date, t2)
-    # time_diff = datetime2 - datetime1
-    # # print(time_diff)
-    # starting_time=str(h1)+":"+str(m1)+":"+str(s1)
-    # #for downloading audio
-    import subprocess
-    l=substring
-    cmd2='ffmpeg -ss {} -i "{}" -map a -to {} -c:a mp3 sample.mp3'.format(starting_time,l,time_diff)
-    print(cmd2)
-    subprocess= subprocess.Popen(cmd2, shell=True, stdout=subprocess.PIPE)
-    subprocess_return = subprocess.stdout.read()
-    # normalstring 
-    normal2 = subprocess_return.decode('utf-8')
-    print(normal2)
+    print(normal)
     print("audio downloaded")
 
 def check_files(): 
@@ -104,19 +66,16 @@ def timer():
     signal.signal(signal.SIGALRM, signal_handler)
     signal.alarm(20)   # Ten seconds
 
-
-
-def main_func(url,start_time,end_time):
+def main_process(url,start_time,end_time,flag):
     # url="https://www.youtube.com/watch?v=jHNNMj5bNQw"
     audio='sample.mp3'
     title.text=""
     error_response.m=""
     main.s=""
     findt.text=""
+    check_files()
     try:
-        check_files()
         if start_time == "x":
-
             autofindt(url)
             print(autofindt.s,autofindt.to)
             audio_download(url,autofindt.s,autofindt.to)
@@ -130,17 +89,18 @@ def main_func(url,start_time,end_time):
         check_files()
     except Exception as e:
         # print(e)
-        print("error occured and Retrying..")
-        try:
-            check_files()
-            audio_download(url)
-            main(audio)
-            # title(url)
-            check_files()
-
-        except Exception as e:
-            # print(e)
+        if(flag==True):
+            flag=False
+            print("error occured and Retrying..")
+            print(e)
+            main_process(url,start_time,end_time,flag)
+        else:
             print("second time error")
             error_response()
+            
+
+def main_func(url,start_time,end_time):
+    flag=True
+    main_process(url,start_time,end_time,flag)
             
 
